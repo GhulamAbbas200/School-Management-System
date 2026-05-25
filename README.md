@@ -4,95 +4,254 @@ A premium Java Swing desktop application integrated with Microsoft SQL Server us
 
 ---
 
-## ✨ Features Included
+# ✨ Features Included
 
-1. **🔐 Multi-Role Authentication**
-   * **Admin Portal**: Restricted access for system staff and faculty (Default: `admin`/`admin123`).
-   * **Student Portal**: Access for students to view grades, attendance, and fee history (Default password: `student123`).
-2. **👤 Student Registry**
-   * Add, search (dynamically by name/roll number), update, and delete student profiles.
-3. **🎓 Faculty Management**
-   * Add and view teacher profiles and assign subjects.
-4. **📅 Attendance Tracker**
-   * Mark daily student attendance (Present/Absent) and view historical logs.
-5. **📊 Academic Reports (Result Module)**
-   * Add subject marks, compute letter grades (`A`, `B`, `C`, `D`, `F`) automatically, and view student result transcripts.
-6. **💳 Fee Modules**
-   * Process tuition payments, view paid amounts, and monitor outstanding balances.
-7. **⚙️ Auto-Repairing Database helper**
-   * Self-initializing SQL Server JDBC integration. Automatically creates the database and all required tables if they do not exist.
-8. **🌓 Theme Customization**
-   * Instant transition between modern Dark Mode and clean Light Mode.
+### 1. 🔐 Multi-Role Authentication
+
+* **Admin Portal**
+  Restricted access for system staff and faculty.
+  **Default Credentials:** `admin / admin123`
+
+* **Student Portal**
+  Access for students to view grades, attendance, and fee history.
+  **Default Password:** `student123`
 
 ---
 
-## 🛠️ Technology Stack
+### 2. 👤 Student Registry
 
-* **Language**: Java 11+
-* **GUI Toolkit**: Java Swing (with custom rounded panels, cards, and vector icons)
-* **Database**: Microsoft SQL Server
-* **Driver**: Microsoft JDBC Driver for SQL Server (`mssql-jdbc-12.6.1.jre11.jar`)
+* Add student profiles
+* Search dynamically by:
+
+  * Name
+  * Roll Number
+* Update student records
+* Delete student records
 
 ---
 
-## 📁 Repository Structure
+### 3. 🎓 Faculty Management
+
+* Add teacher profiles
+* View faculty information
+* Assign subjects to teachers
+
+---
+
+### 4. 📅 Attendance Tracker
+
+* Mark daily attendance:
+
+  * Present
+  * Absent
+* View attendance history and logs
+
+---
+
+### 5. 📊 Academic Reports (Result Module)
+
+* Add subject marks
+* Automatically compute letter grades:
+
+  * `A`
+  * `B`
+  * `C`
+  * `D`
+  * `F`
+* Generate and view student transcripts
+
+---
+
+### 6. 💳 Fee Modules
+
+* Process tuition payments
+* View payment history
+* Monitor outstanding balances
+
+---
+
+### 7. ⚙️ Auto-Repairing Database Helper
+
+* Self-initializing JDBC integration
+* Automatically creates:
+
+  * Database
+  * Required tables
+* Repairs missing schema components if needed
+
+---
+
+### 8. 🌓 Theme Customization
+
+* Modern Dark Mode
+* Clean Light Mode
+* Instant theme switching
+
+---
+
+# 🛠️ Technology Stack
+
+| Component       | Technology                                                           |
+| --------------- | -------------------------------------------------------------------- |
+| **Language**    | Java 11+                                                             |
+| **GUI Toolkit** | Java Swing                                                           |
+| **Database**    | Microsoft SQL Server                                                 |
+| **Driver**      | Microsoft JDBC Driver for SQL Server (`mssql-jdbc-12.6.1.jre11.jar`) |
+
+---
+
+# 📁 Repository Structure
 
 ```text
-├── SchoolManagementSystem.java   # Main entry point & Auth modules
-├── DatabaseHelper.java           # JDBC Connection & Database Initialization
-├── ThemeConstants.java          # Global colors, styling tokens, and Theme engine
-├── VectorIcon.java               # Programmatic UI vector icons
-├── StudentPanel.java             # Student Registry management view
-├── TeacherPanel.java             # Faculty management view
-├── AttendancePanel.java          # Attendance log and marking view
-├── ResultPanel.java              # Academic grades and transcripts view
-├── FeePanel.java                 # Fee ledgers and transaction view
-├── package.bat                   # Automation script to compile & package to JAR
-├── db.properties.example         # Template database configuration
-├── db_setup.sql                  # Database T-SQL schema reference
-└── DEPLOYMENT.md                 # Step-by-step production deployment guide
+├── SchoolManagementSystem.java    # Main entry point & authentication modules
+├── DatabaseHelper.java            # JDBC connection & database initialization
+├── ThemeConstants.java            # Global colors, styling tokens, and theme engine
+├── VectorIcon.java                # Programmatic UI vector icons
+├── StudentPanel.java              # Student registry management view
+├── TeacherPanel.java              # Faculty management view
+├── AttendancePanel.java           # Attendance log and marking view
+├── ResultPanel.java               # Academic grades and transcripts view
+├── FeePanel.java                  # Fee ledgers and transaction view
+├── package.bat                    # Automation script to compile & package to JAR
+├── db.properties.example          # Template database configuration
+├── db_setup.sql                   # Database T-SQL schema reference
+└── DEPLOYMENT.md                  # Production deployment guide
 ```
----
-##🚀 Setup & Running Instructions
 
-**Prerequisite 1:** Enable TCP/IP in SQL Server
-Open SQL Server Configuration Manager.
-Go to SQL Server Network Configuration -> Protocols for MSSQLSERVER.
-Right-click TCP/IP and select Enable.
-Right-click TCP/IP and select Properties. Under the IP Addresses tab, scroll to IPAll and set the TCP Port to 1433.
-Restart the SQL Server service in Windows Services.
-
-**Prerequisite 2:** Download the JDBC Driver
-Download the Microsoft JDBC Driver for SQL Server (JAR) and place the .jar file directly in the project root directory.
-
-**Prerequisite 3:** Local Configuration
-Copy db.properties.example and rename the copy to db.properties.
-Fill in your SQL Server database host (e.g., localhost), port, login credentials (user & password).
-If using Windows Integrated Authentication, set db.integratedSecurity=true
 ---
 
-##📦 How to Compile, Build, and Run
+# 🚀 Setup & Running Instructions
 
-**Option A:** Using the Automated Script (Recommended)
-Simply run the package script in your command line:
+## ✅ Prerequisite 1: Enable TCP/IP in SQL Server
 
-cmd
+1. Open **SQL Server Configuration Manager**
+2. Navigate to:
+
+```text
+SQL Server Network Configuration
+    └── Protocols for MSSQLSERVER
+```
+
+3. Right-click **TCP/IP** → Select **Enable**
+4. Right-click **TCP/IP** → Select **Properties**
+5. Open the **IP Addresses** tab
+6. Scroll to **IPAll**
+7. Set:
+
+```text
+TCP Port = 1433
+```
+
+8. Restart the SQL Server service from Windows Services
+
+---
+
+## ✅ Prerequisite 2: Download the JDBC Driver
+
+Download the Microsoft JDBC Driver for SQL Server and place the `.jar` file directly inside the project root directory.
+
+---
+
+## ✅ Prerequisite 3: Local Configuration
+
+1. Copy:
+
+```text
+db.properties.example
+```
+
+2. Rename the copied file to:
+
+```text
+db.properties
+```
+
+3. Configure:
+
+* Database host
+* Port
+* Username
+* Password
+
+Example:
+
+```properties
+db.host=localhost
+db.port=1433
+db.user=sa
+db.password=yourpassword
+```
+
+4. For Windows Integrated Authentication:
+
+```properties
+db.integratedSecurity=true
+```
+
+---
+
+# 📦 How to Compile, Build, and Run
+
+## Option A: Automated Script (Recommended)
+
+Run the packaging script:
+
+```cmd
 package.bat
-This compiles the application, packages it, and places a runnable version inside a new dist/ directory. Go to dist/ and double-click run.bat to launch the app!
+```
 
-**Option B:** Manual Commands
-Open your Command Prompt (cmd) in this directory and execute:
+This will:
 
-Compile:
-cmd
+* Compile the project
+* Package the application
+* Create a runnable version inside the `dist/` directory
+
+Then navigate to:
+
+```text
+dist/
+```
+
+and run:
+
+```cmd
+run.bat
+```
+
+---
+
+## Option B: Manual Commands
+
+Open Command Prompt (`cmd`) inside the project directory.
+
+### Compile
+
+```cmd
 javac -cp ".;mssql-jdbc-12.6.1.jre11.jar" *.java
-Run:
-cmd
+```
+
+### Run
+
+```cmd
 java -cp ".;mssql-jdbc-12.6.1.jre11.jar" SchoolManagementSystem
-🔐 Default Access Credentials
-System Administrator
+```
+
+---
+
+# 🔐 Default Access Credentials
+
+## 👨‍💼 System Administrator
+
+```text
 Username: admin
 Password: admin123
-Student Registry Profile (Default)
-Username / Roll No: [Created Roll Number]
+```
+
+---
+
+## 👨‍🎓 Student Profile
+
+```text
+Username / Roll Number: [Created Roll Number]
 Password: student123
+```
