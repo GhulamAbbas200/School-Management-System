@@ -53,29 +53,34 @@ A premium Java Swing desktop application integrated with Microsoft SQL Server us
 └── DEPLOYMENT.md                 # Step-by-step production deployment guide
 ```
 
-🚀 Setup & Running Instructions
-Prerequisite 1: Enable TCP/IP in SQL Server
+##🚀 Setup & Running Instructions
+
+**Prerequisite 1:** Enable TCP/IP in SQL Server
 Open SQL Server Configuration Manager.
 Go to SQL Server Network Configuration -> Protocols for MSSQLSERVER.
 Right-click TCP/IP and select Enable.
 Right-click TCP/IP and select Properties. Under the IP Addresses tab, scroll to IPAll and set the TCP Port to 1433.
 Restart the SQL Server service in Windows Services.
-Prerequisite 2: Download the JDBC Driver
+
+**Prerequisite 2:** Download the JDBC Driver
 Download the Microsoft JDBC Driver for SQL Server (JAR) and place the .jar file directly in the project root directory.
 
-Prerequisite 3: Local Configuration
+**Prerequisite 3:** Local Configuration
 Copy db.properties.example and rename the copy to db.properties.
 Fill in your SQL Server database host (e.g., localhost), port, login credentials (user & password).
-If using Windows Integrated Authentication, set db.integratedSecurity=true.
-📦 How to Compile, Build, and Run
-Option A: Using the Automated Script (Recommended)
+If using Windows Integrated Authentication, set db.integratedSecurity=true
+
+
+##📦 How to Compile, Build, and Run
+
+**Option A:** Using the Automated Script (Recommended)
 Simply run the package script in your command line:
 
 cmd
 package.bat
 This compiles the application, packages it, and places a runnable version inside a new dist/ directory. Go to dist/ and double-click run.bat to launch the app!
 
-Option B: Manual Commands
+**Option B:** Manual Commands
 Open your Command Prompt (cmd) in this directory and execute:
 
 Compile:
@@ -91,4 +96,3 @@ Password: admin123
 Student Registry Profile (Default)
 Username / Roll No: [Created Roll Number]
 Password: student123
-9:28 PM
