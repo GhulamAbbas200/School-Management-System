@@ -51,7 +51,7 @@ A premium Java Swing desktop application integrated with Microsoft SQL Server us
 ├── db.properties.example         # Template database configuration
 ├── db_setup.sql                  # Database T-SQL schema reference
 └── DEPLOYMENT.md                 # Step-by-step production deployment guide
-
+```
 
 🚀 Setup & Running Instructions
 Prerequisite 1: Enable TCP/IP in SQL Server
