@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCore SMS - Result Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .sidebar-active {
+            border-left-width: 4px;
+            background-color: #1e40af; /* Education Blue from primary-container */
+            color: #ffffff;
+        }
+        /* Custom scrollbar for data-heavy views */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d8dadc",
+                        "inverse-primary": "#b8c4ff",
+                        "tertiary-container": "#872d00",
+                        "primary": "#00288e",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-surface-variant": "#444653",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#002114",
+                        "on-primary-fixed-variant": "#173bab",
+                        "on-primary-fixed": "#001453",
+                        "on-background": "#191c1e",
+                        "tertiary": "#611e00",
+                        "secondary-fixed-dim": "#68dba9",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline": "#757684",
+                        "on-secondary-container": "#00714e",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed": "#dde1ff",
+                        "surface-tint": "#3755c3",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-primary-container": "#a8b8ff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-container": "#ffa583",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary-fixed": "#ffdbce",
+                        "secondary": "#006c4a",
+                        "on-surface": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c5d5",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "background": "#f7f9fb",
+                        "secondary-fixed": "#85f8c4",
+                        "primary-container": "#1e40af",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "container-padding": "32px",
+                        "gutter": "24px",
+                        "card-gap": "16px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "data-tabular": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex min-h-screen">
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col h-full border-r border-outline-variant dark:border-outline fixed left-0 top-0 w-sidebar-width bg-inverse-surface dark:bg-surface-container-lowest z-50">
+<div class="px-gutter py-8">
+<h1 class="font-headline-sm text-headline-sm text-primary-fixed">EduCore SMS</h1>
+</div>
+<div class="px-4 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Admin User" data-alt="A professional close-up portrait of a system administrator in a modern office. The lighting is crisp and natural, highlighting a clean-cut look. The background is a blurred academic hallway with cool tones of blue and grey, maintaining a corporate and competent atmosphere consistent with high-end educational software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD2dBKKg3Z0jpCby4zhOYEPCwRDCGnmuzelLFciDLDpNkKISSpa87G30UJ3lgU2zTQG76bL_Nw-x49LC5zyZFU1XWUl0RtDBikvM4bBNeKaJTU7uZz7Rb6Qr0dAUuWxqBlnbw13DBM-UTM0rXay_8CbkGznMsCXPP9ylhiX0n4e8svgGP7ADsMrXNsbI8Fu6zLUn8LKevKyt5Ewurg_QZhduJbENdNtrpXK_HVBk8HYX1PMQT71-qoKuryRVrDz_GxQLTKFHEOoA4"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-label-md text-label-md text-primary-fixed truncate">System Administrator</span>
+<span class="text-[10px] text-surface-variant uppercase tracking-wider">Main Campus • V2.4.0</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Student Registry</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-label-md text-label-md">Faculty Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Fee Modules</span>
+</a>
+<!-- Active Item -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary rounded-r-full duration-200 ease-in-out cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-gutter py-base z-40">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 hover:bg-surface-container rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Result Panel</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors rounded-full cursor-pointer">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-outline bg-surface-container overflow-hidden cursor-pointer active:opacity-80">
+<img alt="Admin" data-alt="A small circular avatar placeholder for an administrator profile. Simple, clean, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1oAiNgT2mK2QRvCyuXPIxGQuUUL6hsulEumW6ZBjzwxgZkk7cMAmPW9eRYgkq011cI6j-12FY-Jc0iqjfysIDa7Yr3Rt-WlssQUuizzVQ55KL-x2ykv7jy3BKnMtKTWCAilzn7FMuDD5y-Nn_5yX9J3HN1gN5gX4Vjx5oSUTCPd-XFgF1baCuZjeBMrooTCJWKwp_8GFkH8K85ck80qcp4iJ3f5begirHGC4TvVsNEhFTa8VCvtfZbwIbdW5bRYVhZbQSy78Kawg"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-gutter pb-24 md:pb-gutter space-y-gutter">
+<!-- Summary Stats Bar (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap">
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-card-gap">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border border-outline-variant flex flex-col gap-2">
+<span class="text-on-surface-variant font-label-md uppercase">Current Batch Avg</span>
+<span class="font-headline-md text-primary">78.4%</span>
+<div class="w-full bg-surface-container rounded-full h-1">
+<div class="bg-primary h-1 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border border-outline-variant flex flex-col gap-2">
+<span class="text-on-surface-variant font-label-md uppercase">Submissions</span>
+<span class="font-headline-md text-secondary">142/150</span>
+<span class="text-[10px] text-on-surface-variant">94.6% Completed</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border border-outline-variant flex flex-col gap-2">
+<span class="text-on-surface-variant font-label-md uppercase">Top Performer</span>
+<span class="font-headline-md text-on-surface truncate">Elena Vance</span>
+<span class="text-[10px] text-primary font-bold">Physics: 99.0</span>
+</div>
+</div>
+<div class="md:col-span-4 bg-primary-container text-on-primary-container p-5 rounded-xl shadow-sm border border-primary flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm">Final Review</h3>
+<p class="text-body-md opacity-80">Q3 Academic Term</p>
+</div>
+<span class="material-symbols-outlined text-4xl" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Marks Entry Form Column -->
+<div class="lg:col-span-1">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="bg-surface-container p-4 border-b border-outline-variant">
+<h3 class="font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="edit_note">edit_note</span>
+                                    Marks Entry
+                                </h3>
+</div>
+<form class="p-6 space-y-6" id="marksForm">
+<div class="space-y-2">
+<label class="block font-body-md font-bold text-on-surface-variant">Student Name</label>
+<select class="w-full bg-white border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="studentSelect" required="">
+<option disabled="" selected="" value="">Select a student</option>
+<option value="John Doe">John Doe (ID: 1021)</option>
+<option value="Jane Smith">Jane Smith (ID: 1022)</option>
+<option value="Elena Vance">Elena Vance (ID: 1023)</option>
+<option value="Gordon Freeman">Gordon Freeman (ID: 1024)</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="block font-body-md font-bold text-on-surface-variant">Subject</label>
+<div class="relative">
+<input class="w-full bg-white border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="subjectInput" list="subjects" placeholder="e.g. Mathematics" required="" type="text"/>
+<datalist id="subjects">
+<option value="Mathematics">
+</option><option value="Physics">
+</option><option value="Chemistry">
+</option><option value="Computer Science">
+</option><option value="Advanced English">
+</option></datalist>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="block font-body-md font-bold text-on-surface-variant">Marks (0-100)</label>
+<span class="font-label-md text-primary uppercase" id="gradePreview">Grade: --</span>
+</div>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="marksInput" max="100" min="0" placeholder="Enter score" required="" step="0.5" type="number"/>
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary-container text-on-primary-container py-3 px-6 rounded-lg font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-md" type="submit">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                                        Record Result
+                                    </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Searchable Results Table Column -->
+<div class="lg:col-span-2">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant h-full flex flex-col">
+<div class="p-4 border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h3 class="font-headline-sm text-on-surface">Recent Submissions</h3>
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-1 focus:ring-primary focus:bg-white transition-all" id="tableSearch" placeholder="Search students..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Student</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Subject</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Marks</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Grade</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody id="resultsTableBody">
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-tabular">John Doe</td>
+<td class="px-6 py-4 font-body-md">Advanced Physics</td>
+<td class="px-6 py-4 font-data-tabular">88.5</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold">A</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-2 rounded transition-colors group relative" title="Download Report Card">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors even:bg-surface-container-low">
+<td class="px-6 py-4 font-data-tabular">Jane Smith</td>
+<td class="px-6 py-4 font-body-md">Mathematics</td>
+<td class="px-6 py-4 font-data-tabular">92.0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold">A+</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-2 rounded transition-colors group" title="Download Report Card">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-tabular">Gordon Freeman</td>
+<td class="px-6 py-4 font-body-md">Chemistry</td>
+<td class="px-6 py-4 font-data-tabular">65.0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[11px] font-bold">C</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-2 rounded transition-colors group" title="Download Report Card">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors even:bg-surface-container-low">
+<td class="px-6 py-4 font-data-tabular">Elena Vance</td>
+<td class="px-6 py-4 font-body-md">Computer Science</td>
+<td class="px-6 py-4 font-data-tabular">99.0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold">A+</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-2 rounded transition-colors group" title="Download Report Card">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-outline-variant text-[11px] text-on-surface-variant flex justify-between items-center">
+<span>Showing 4 of 142 records</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-white transition-all disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-primary text-white">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-white transition-all">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-white transition-all">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-16 px-4 pb-safe bg-surface dark:bg-surface-container border-t border-outline-variant dark:border-outline shadow-lg fixed bottom-0 w-full z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant cursor-pointer active:bg-surface-container-high transition-transform duration-150 scale-95">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant cursor-pointer active:bg-surface-container-high transition-transform duration-150 scale-95">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">Schedule</span>
+</div>
+<!-- Active Item for this page -->
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold cursor-pointer active:bg-surface-container-high transition-transform duration-150 scale-95">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span class="font-label-md text-label-md">Grades</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant cursor-pointer active:bg-surface-container-high transition-transform duration-150 scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+</main>
+</div>
+<script>
+        // Micro-interaction: Calculate Grade from Marks
+        const marksInput = document.getElementById('marksInput');
+        const gradePreview = document.getElementById('gradePreview');
+
+        function calculateGrade(marks) {
+            if (marks >= 90) return 'A+';
+            if (marks >= 80) return 'A';
+            if (marks >= 70) return 'B';
+            if (marks >= 60) return 'C';
+            if (marks >= 50) return 'D';
+            return 'F';
+        }
+
+        marksInput.addEventListener('input', (e) => {
+            const val = parseFloat(e.target.value);
+            if (!isNaN(val)) {
+                gradePreview.textContent = `Grade: ${calculateGrade(val)}`;
+                gradePreview.className = 'font-label-md text-primary uppercase animate-pulse';
+            } else {
+                gradePreview.textContent = 'Grade: --';
+                gradePreview.className = 'font-label-md text-primary uppercase';
+            }
+        });
+
+        // Search Filter Interaction
+        const tableSearch = document.getElementById('tableSearch');
+        const tableRows = document.querySelectorAll('#resultsTableBody tr');
+
+        tableSearch.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            tableRows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const subject = row.cells[1].textContent.toLowerCase();
+                if (name.includes(term) || subject.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Form Submission Interaction
+        const marksForm = document.getElementById('marksForm');
+        const resultsTableBody = document.getElementById('resultsTableBody');
+
+        marksForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const student = document.getElementById('studentSelect').value;
+            const subject = document.getElementById('subjectInput').value;
+            const marks = parseFloat(document.getElementById('marksInput').value);
+            const grade = calculateGrade(marks);
+
+            // Add new row to table
+            const newRow = document.createElement('tr');
+            newRow.className = 'border-b border-outline-variant hover:bg-surface-container transition-colors bg-secondary-container/5';
+            
+            const gradeClass = grade === 'F' ? 'bg-error-container text-on-error-container' : 
+                              (grade === 'A+' || grade === 'A' ? 'bg-secondary-container text-on-secondary-container' : 'bg-tertiary-fixed text-on-tertiary-fixed');
+
+            newRow.innerHTML = `
+                <td class="px-6 py-4 font-data-tabular">${student}</td>
+                <td class="px-6 py-4 font-body-md">${subject}</td>
+                <td class="px-6 py-4 font-data-tabular">${marks.toFixed(1)}</td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 ${gradeClass} rounded-full text-[11px] font-bold">${grade}</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button class="text-primary hover:bg-primary/10 p-2 rounded transition-colors group">
+                        <span class="material-symbols-outlined" data-icon="download">download</span>
+                    </button>
+                </td>
+            `;
+            
+            resultsTableBody.prepend(newRow);
+            
+            // Success Effect
+            const submitBtn = marksForm.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span> Recorded';
+            submitBtn.classList.replace('bg-primary-container', 'bg-secondary');
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.classList.replace('bg-secondary', 'bg-primary-container');
+                marksForm.reset();
+                gradePreview.textContent = 'Grade: --';
+            }, 2000);
+        });
+    </script>
+</body></html>

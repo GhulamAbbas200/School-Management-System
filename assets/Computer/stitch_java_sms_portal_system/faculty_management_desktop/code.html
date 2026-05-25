@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Faculty Management - EduCore SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#85f8c4",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dde1ff",
+                        "on-background": "#191c1e",
+                        "on-primary-fixed": "#001453",
+                        "outline": "#757684",
+                        "surface-tint": "#3755c3",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#006c4a",
+                        "primary-container": "#1e40af",
+                        "primary": "#00288e",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c4c5d5",
+                        "on-secondary-container": "#00714e",
+                        "tertiary": "#611e00",
+                        "surface": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#ffa583",
+                        "tertiary-container": "#872d00",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#68dba9",
+                        "on-primary-fixed-variant": "#173bab",
+                        "on-secondary-fixed-variant": "#005137",
+                        "inverse-primary": "#b8c4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-container": "#a8b8ff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-surface-variant": "#444653",
+                        "secondary-container": "#82f5c1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "card-gap": "16px",
+                        "container-padding": "32px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "data-tabular": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active-bar {
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #1e40af;
+        }
+        .zebra-table tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- NavigationDrawer (Shared Component) -->
+<aside class="hidden md:flex flex-col h-full border-r border-outline-variant dark:border-outline fixed left-0 top-0 w-[260px] bg-inverse-surface dark:bg-surface-container-lowest z-50">
+<div class="px-6 py-8">
+<h1 class="font-headline-sm text-headline-sm text-primary-fixed">EduCore SMS</h1>
+<p class="text-surface-variant text-[10px] uppercase tracking-widest mt-1">Academic Administration</p>
+</div>
+<div class="px-4 mb-8">
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl">
+<img alt="Admin" class="w-10 h-10 rounded-full bg-primary-container object-cover" data-alt="A professional headshot of a middle-aged academic administrator with a warm, confident expression. He is wearing a dark navy suit and glasses, set against a blurred background of a modern university library with soft, natural lighting. The image conveys authority, competence, and a commitment to educational excellence in a high-key, light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg1B-DzedFuc00ueoBuhQrl_XxkSzhzL0u_Br1TM4KIZUV8MoU-oZffz8pVkEfQ9Tw_1dGlkEoWvp3PI6OU7ZTpWafDF2StWGpC_au5z7FrNfkTFNBkuiy2xL67ueZTnHTAYgOEYN4WVIxQaJQI0AJMT9NxUiS9dcm64coPD0_Mo_mLT3y_wbctGauS9C0UQvSMKXpXztRiNnL_tfUNYi8wCJDDP6Kwttc2Ow-ObeLikJcIgCp3P6DgFJz_WhHhlJR3CQhQh68K5I"/>
+<div class="overflow-hidden">
+<p class="text-white font-medium truncate">System Administrator</p>
+<p class="text-surface-variant text-xs truncate">Main Campus</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Student Registry</span>
+</a>
+<!-- Active State: Faculty Management -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary rounded-r-full transition-all group" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-label-md text-label-md">Faculty Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Fee Modules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-white/10">
+<div class="flex items-center justify-between text-surface-variant">
+<span class="text-[10px]">V2.4.0</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[260px] transition-all duration-300">
+<!-- TopAppBar (Shared Component) -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-container-low flex justify-between items-center px-gutter py-base z-40 border-b border-outline-variant dark:border-outline shadow-sm h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined md:hidden cursor-pointer text-on-surface">menu</span>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Faculty Management</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-on-surface-variant/50" placeholder="Quick search..." type="text"/>
+</div>
+<div class="relative cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</div>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer active:opacity-80" data-alt="A small circular avatar icon representing a user profile. It shows a clean, professional portrait of a woman with a friendly smile, styled with soft studio lighting against a neutral grey background. The image is crisp and optimized for a modern dashboard UI element." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByCC19L7N4UeZ86r4jYfNV7dt-_OJez8dlO9mnVbtfFO5L9L_ixdTj8u11eSkVwgQ3o2E14q3ECsnk3nGWTTyQlbkCTb8vqlpVRkHiA5hWn1PmaMQrf2PzOPtSPAGHqQM56nUEnZxkM498DQC9kliazTYh6tE_V2Fm8cTRF-YI4wR7eaXJrmXgUONji6H6LlwE0Wlq_BlX4A32tzHpzuNBvUxjRJ9nquW1WkIbAesbYPZt8IwuGDR_P7KBEl8_pBSUDfrH3P7ZuwA"/>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-gutter max-w-7xl mx-auto space-y-gutter">
+<!-- Summary Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-card-gap">
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-success text-xs font-bold">+4%</span>
+</div>
+<div class="mt-4">
+<h3 class="text-on-surface-variant font-label-md text-label-md">Total Faculty</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface">248</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-secondary-container/30 rounded-lg text-secondary">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<span class="text-on-surface-variant text-xs font-bold">12 Depts</span>
+</div>
+<div class="mt-4">
+<h3 class="text-on-surface-variant font-label-md text-label-md">Departments</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface">14</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-tertiary-container/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">person_off</span>
+</div>
+<span class="text-error text-xs font-bold">Active</span>
+</div>
+<div class="mt-4">
+<h3 class="text-on-surface-variant font-label-md text-label-md">On Leave</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface">09</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-surface-container-highest rounded-lg text-on-surface">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<span class="text-success text-xs font-bold">98%</span>
+</div>
+<div class="mt-4">
+<h3 class="text-on-surface-variant font-label-md text-label-md">Verified Profile</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface">241</p>
+</div>
+</div>
+</div>
+<!-- Content Header & Filters -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm">Faculty Directory</h3>
+<p class="text-on-surface-variant text-body-md">Manage academic staff profiles and assignments</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-primary text-white rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                            Add Faculty
+                        </button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filters
+                        </button>
+</div>
+</div>
+<!-- Table Context Search -->
+<div class="px-6 py-4 bg-surface-container-low flex flex-col md:flex-row gap-4 items-center">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md" placeholder="Search by name, ID, or department..." type="text"/>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto">
+<select class="bg-white border border-outline-variant rounded-lg px-3 py-2 text-body-md text-on-surface-variant focus:border-primary outline-none cursor-pointer">
+<option>All Departments</option>
+<option>Computer Science</option>
+<option>Mathematics</option>
+<option>Physics</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-lg px-3 py-2 text-body-md text-on-surface-variant focus:border-primary outline-none cursor-pointer">
+<option>Status: Active</option>
+<option>Status: On Leave</option>
+<option>Status: Former</option>
+</select>
+</div>
+<div class="md:ml-auto flex items-center gap-4 text-outline text-xs">
+<span>Showing 1-10 of 248 entries</span>
+<div class="flex items-center border border-outline-variant rounded overflow-hidden">
+<button class="p-1 hover:bg-surface-variant/20"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-surface-variant/20 border-l border-outline-variant"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left zebra-table border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md border-b border-outline-variant">
+<th class="px-6 py-4 font-semibold uppercase tracking-wider">Faculty Details</th>
+<th class="px-6 py-4 font-semibold uppercase tracking-wider">Faculty ID</th>
+<th class="px-6 py-4 font-semibold uppercase tracking-wider">Department</th>
+<th class="px-6 py-4 font-semibold uppercase tracking-wider">Designation</th>
+<th class="px-6 py-4 font-semibold uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-semibold uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-body-md divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">JD</div>
+<div>
+<p class="font-bold text-on-surface">Dr. Jane Doe</p>
+<p class="text-xs text-on-surface-variant">jane.doe@educore.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-data-tabular text-data-tabular">FAC-2023-084</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container/10 text-primary text-[11px] font-bold">Computer Science</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Professor</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-success">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+<span class="text-xs font-bold">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">visibility</span></button>
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-outline hover:text-error transition-colors hover:bg-error/10 rounded-md"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">RM</div>
+<div>
+<p class="font-bold text-on-surface">Robert Miller</p>
+<p class="text-xs text-on-surface-variant">r.miller@educore.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-data-tabular text-data-tabular">FAC-2023-012</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/20 text-secondary text-[11px] font-bold">Mathematics</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Senior Lecturer</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="text-xs font-bold">On Leave</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">visibility</span></button>
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-outline hover:text-error transition-colors hover:bg-error/10 rounded-md"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">SC</div>
+<div>
+<p class="font-bold text-on-surface">Sarah Connor</p>
+<p class="text-xs text-on-surface-variant">s.connor@educore.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-data-tabular text-data-tabular">FAC-2023-156</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary text-[11px] font-bold">Physics</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Assistant Prof.</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-success">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+<span class="text-xs font-bold">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">visibility</span></button>
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-outline hover:text-error transition-colors hover:bg-error/10 rounded-md"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">AW</div>
+<div>
+<p class="font-bold text-on-surface">Alan Wright</p>
+<p class="text-xs text-on-surface-variant">a.wright@educore.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-data-tabular text-data-tabular">FAC-2023-042</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container/10 text-primary text-[11px] font-bold">Computer Science</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Dean</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-success">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+<span class="text-xs font-bold">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">visibility</span></button>
+<button class="p-1.5 text-outline hover:text-primary transition-colors hover:bg-primary/10 rounded-md"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-outline hover:text-error transition-colors hover:bg-error/10 rounded-md"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Stats & Pagination -->
+<div class="p-6 bg-white flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-on-surface-variant text-body-md">Showing 10 of 248 faculty members</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">first_page</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container text-xs transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container text-xs transition-colors">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container text-xs transition-colors">25</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">last_page</span></button>
+</div>
+</div>
+</div>
+<!-- Department Distribution Visualization (Asymmetric Component) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-card-gap">
+<div class="lg:col-span-2 bg-white rounded-xl border border-outline-variant shadow-sm p-6">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-headline-sm">Staff Growth</h4>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-xs text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-primary"></span> Hired</span>
+<span class="flex items-center gap-1 text-xs text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-outline-variant"></span> Target</span>
+</div>
+</div>
+<div class="h-48 w-full bg-surface-container-low rounded-lg relative overflow-hidden">
+<!-- Abstract Wave Pattern representing growth -->
+<div class="absolute inset-0 flex items-end">
+<div class="w-1/6 h-[30%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+<div class="w-1/6 h-[45%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+<div class="w-1/6 h-[40%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+<div class="w-1/6 h-[60%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+<div class="w-1/6 h-[75%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+<div class="w-1/6 h-[85%] bg-primary/10 border-t-2 border-primary mx-1"></div>
+</div>
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#1e40af_1px,transparent_1px)] [background-size:16px_16px]"></div>
+</div>
+<div class="grid grid-cols-6 mt-2 text-[10px] text-on-surface-variant text-center uppercase font-bold tracking-tighter">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+</div>
+</div>
+<div class="bg-primary text-white rounded-xl shadow-lg p-6 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<h4 class="font-headline-sm text-headline-sm text-primary-fixed mb-2">Faculty Spotlight</h4>
+<p class="text-primary-fixed/80 text-body-md italic leading-relaxed">"The technology-integrated curriculum has improved student engagement by 40% this semester."</p>
+<div class="mt-6 flex items-center gap-3">
+<img alt="Sarah Connor" class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A detailed portrait of a focused female academic in her early 30s, working in a high-tech science laboratory. She is surrounded by precise equipment and glowing digital interfaces. The lighting is crisp and cool-toned, emphasizing a clean, professional, and innovative educational environment consistent with a light-mode modern UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrC9doCz22Jng3HcyQT3kQ9z0v5-G-xU5vQJ4AJrbOgeHwPD0sPg-8OKudlwrssVMTEBYecntzxWCnq1fZ7lrIX7DbbbX24y-iJG9KrjPksyQM-e1j4A7BIiVhKfd7zfOEEitRIn1e9s96QAJDaerp6lo4U3arsErihI4Dxb_CvM-GGtHwoBmpqayxB21Xnd_hGYiKtaN9gcObaR7asMgBjTRRzWWzv0_9CNYuLzEpCvUVc_JvglgiJJkaBj86n0xTe174tr8bGnc"/>
+<div>
+<p class="font-bold text-primary-fixed">Sarah Connor</p>
+<p class="text-xs text-primary-fixed/60">Physics Department</p>
+</div>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/30 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Shared Component for Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-container border-t border-outline-variant dark:border-outline shadow-lg flex justify-around items-center h-16 px-4 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md">Schedule</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-md text-label-md">Grades</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Placeholder for simple UI interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body></html>

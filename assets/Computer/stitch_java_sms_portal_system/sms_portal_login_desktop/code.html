@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCore SMS | Portal Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#85f8c4",
+                    "on-tertiary-fixed": "#380d00",
+                    "primary-fixed": "#dde1ff",
+                    "on-background": "#191c1e",
+                    "on-primary-fixed": "#001453",
+                    "outline": "#757684",
+                    "surface-tint": "#3755c3",
+                    "on-surface": "#191c1e",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "secondary": "#006c4a",
+                    "primary-container": "#1e40af",
+                    "primary": "#00288e",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#002114",
+                    "surface-container-high": "#e6e8ea",
+                    "outline-variant": "#c4c5d5",
+                    "on-secondary-container": "#00714e",
+                    "tertiary": "#611e00",
+                    "surface": "#f7f9fb",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-container": "#ffa583",
+                    "tertiary-container": "#872d00",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "on-tertiary-fixed-variant": "#802a00",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "surface-container": "#eceef0",
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#68dba9",
+                    "on-primary-fixed-variant": "#173bab",
+                    "on-secondary-fixed-variant": "#005137",
+                    "inverse-primary": "#b8c4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffdbce",
+                    "primary-fixed-dim": "#b8c4ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-container": "#a8b8ff",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-surface-variant": "#444653",
+                    "secondary-container": "#82f5c1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "card-gap": "16px",
+                    "container-padding": "32px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "data-tabular": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .login-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex items-center justify-center">
+<div class="container mx-auto px-gutter max-w-6xl">
+<div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24">
+<!-- Branding Area (Left Side) -->
+<div class="w-full md:w-1/2 text-center md:text-left space-y-6">
+<div class="flex items-center justify-center md:justify-start gap-3">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary">EduCore SMS</h1>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface max-w-md">
+                    Centralized Academic Management for Modern Institutions.
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    EduCore provides a unified platform for students and faculty to track attendance, manage grades, and access institutional resources in real-time.
+                </p>
+<div class="hidden md:flex flex-wrap gap-4 pt-4">
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+<span class="font-label-md text-label-md">Secure Portal</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-sm">speed</span>
+<span class="font-label-md text-label-md">Real-time Data</span>
+</div>
+</div>
+</div>
+<!-- Login Card Container (Right Side) -->
+<div class="w-full md:w-[420px] perspective-1000">
+<div class="login-card-inner relative w-full min-h-[500px] preserve-3d" id="login-card-inner">
+<!-- Student Sign In (Front) -->
+<div class="absolute inset-0 backface-hidden w-full h-full">
+<div class="bg-surface-container-lowest rounded-xl shadow-md border border-outline-variant p-8 flex flex-col h-full">
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Student Sign In</h3>
+<p class="font-body-md text-on-surface-variant">Enter your credentials to access your academic dashboard.</p>
+</div>
+<form class="space-y-5 flex-grow" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md mb-2 text-on-surface" for="student-roll">Roll Number</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md" id="student-roll" placeholder="e.g. 2024-EDU-001" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2 text-on-surface" for="student-pass">Password</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md" id="student-pass" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant">Remember me</span>
+</label>
+<a class="font-label-md text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-headline-sm shadow-sm hover:opacity-90 active:scale-[0.98] transition-all">
+                                    Login to Dashboard
+                                </button>
+</form>
+<div class="mt-8 pt-6 border-t border-outline-variant text-center">
+<button class="text-on-surface-variant font-body-md hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto" onclick="toggleCard()">
+                                    Are you an administrator? <span class="font-bold text-primary">Switch to Admin Portal</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Admin Sign In (Back) -->
+<div class="absolute inset-0 backface-hidden w-full h-full rotate-y-180">
+<div class="bg-surface-container-lowest rounded-xl shadow-md border border-outline-variant p-8 flex flex-col h-full">
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-tertiary-container text-on-tertiary-container font-label-md mb-4">
+<span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+                                    Administrative Access
+                                </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Admin Sign In</h3>
+<p class="font-body-md text-on-surface-variant">Restricted access for faculty and system staff.</p>
+</div>
+<form class="space-y-5 flex-grow" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md mb-2 text-on-surface" for="admin-user">Username</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md" id="admin-user" placeholder="admin_jane_doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2 text-on-surface" for="admin-pass">Password</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md" id="admin-pass" placeholder="••••••••" type="password"/>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/30">
+<p class="font-label-md text-[11px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                                        Two-factor authentication required after login.
+                                    </p>
+</div>
+<button class="w-full bg-inverse-surface text-on-surface-variant dark:text-inverse-on-surface py-3 rounded-lg font-headline-sm shadow-sm hover:opacity-90 active:scale-[0.98] transition-all">
+                                    Verify Admin Credentials
+                                </button>
+</form>
+<div class="mt-8 pt-6 border-t border-outline-variant text-center">
+<button class="text-on-surface-variant font-body-md hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto" onclick="toggleCard()">
+                                    Student? <span class="font-bold text-primary">Return to Student Sign In</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="fixed top-0 right-0 p-12 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]">auto_stories</span>
+</div>
+<div class="fixed bottom-0 left-0 p-12 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">history_edu</span>
+</div>
+<script>
+        function toggleCard() {
+            const card = document.getElementById('login-card-inner');
+            card.classList.toggle('flipped');
+        }
+
+        // Simple subtle parallax or mouse follow effect for background icons
+        document.addEventListener('mousemove', (e) => {
+            const icons = document.querySelectorAll('.fixed .material-symbols-outlined');
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            
+            icons.forEach(icon => {
+                icon.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    </script>
+</body></html>

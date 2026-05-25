@@ -1,0 +1,7 @@
+# Database Configuration Template for School Management System
+# Copy this file to 'db.properties' and fill in your actual credentials.
+db.host=your_sql_server_ip_or_localhost
+db.port=1433
+db.user=your_username
+db.password=your_password
+db.integratedSecurity=false

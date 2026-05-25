@@ -1,0 +1,22 @@
+# Java compiler output
+*.class
+
+# Package/Distribution output
+dist/
+
+# Log files
+*.log
+
+# IDE files (VS Code, IntelliJ, Eclipse)
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Temporary files
+manifest.txt
+
+# Local configuration containing sensitive credentials
+db.properties
