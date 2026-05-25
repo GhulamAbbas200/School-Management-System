@@ -52,7 +52,7 @@ A premium Java Swing desktop application integrated with Microsoft SQL Server us
 ├── db_setup.sql                  # Database T-SQL schema reference
 └── DEPLOYMENT.md                 # Step-by-step production deployment guide
 ```
-
+---
 ##🚀 Setup & Running Instructions
 
 **Prerequisite 1:** Enable TCP/IP in SQL Server
@@ -69,7 +69,7 @@ Download the Microsoft JDBC Driver for SQL Server (JAR) and place the .jar file 
 Copy db.properties.example and rename the copy to db.properties.
 Fill in your SQL Server database host (e.g., localhost), port, login credentials (user & password).
 If using Windows Integrated Authentication, set db.integratedSecurity=true
-
+---
 
 ##📦 How to Compile, Build, and Run
 
